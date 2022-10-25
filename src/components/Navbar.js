@@ -4,9 +4,19 @@ import logo from '../logo.svg'
 
 const Navbar = () => {
   return (
-    <div>
-      <h2>navbar component</h2>
-    </div>
+    <div className='nav-center'>
+      <Link>
+        <img src={logo} alt='smth' className='logo' />
+      </Link>
+      <ul className='nav-links'>
+        <li>
+          <Link to='/'>home</Link>
+          </li>
+        <li>
+          <Link to='/about' >about</Link>
+          </li>
+      </ul>
+   </div>
   )
 }
 

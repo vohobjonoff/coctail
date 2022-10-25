@@ -17,18 +17,41 @@ const AppProvider = ({ children }) => {
       const { drinks } = data;
       if (drinks) {
         const newCoctails = drinks.map((item) => {
-          const {idDrink, }
+          const {
+            idDrink,
+            strDrink,
+            strDrinkThumb,
+            strAlcoholic,
+            strGlass,
+          } = item;
+          return {
+            id: idDrink,
+            name: strDrink,
+            image: strDrinkThumb,
+            info: strAlcoholic,
+            glass: strGlass
+          }
         })
+        setCoctails(newCoctails)
+      } else {
+        setCoctails([]);
       }
+      setLoading(false)
 
     } catch (error) {
-      
+      console.log(error);
+      setLoading(false)
     }
-  })
+  }, [searchTerm]);
+
+  useEffect(() => {
+    fetchDrinnk()
+  }, [searchTerm, fetchDrinnk]);
 
 
-
-  return <AppContext.Provider value='hello'>{children}</AppContext.Provider>
+  return <AppContext.Provider
+    value={{loading, coctails, searchTerm, setSearchTerm  }}
+  >{children}</AppContext.Provider>
 }
 // make sure use
 export const useGlobalContext = () => {
